@@ -27,10 +27,11 @@ public class Main {
         List<String> surnames = secondStream
                 .filter(w -> w.getAge() >= 18 && w.getAge() <= 27 && w.getSex() == Sex.MAN)
                 .map(Person::getFamily).collect(Collectors.toList());
-       
+
         Stream<Person> thirdStream = persons.stream();
         List<Person> workers = thirdStream
-                .filter(w -> w.getAge() >= 18 && w.getAge() <= (w.getSex() != Sex.MAN ? 60 : 65))
+                .filter(w -> w.getAge() >= 18 && w.getAge() <= (w.getSex() != Sex.MAN ? 60 : 65) &&
+                        w.getEducation() == Education.HIGHER)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
     }
